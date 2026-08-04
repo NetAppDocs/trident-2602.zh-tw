@@ -16,6 +16,7 @@ summary: '您可以使用 `tridentctl`安裝 Trident。此程序適用於 Triden
 
 
 
+[[critical-information-about-trident10]]
 == 關於 Trident10 的關鍵資訊
 
 *您必須閱讀以下關於 Trident 的重要資訊。*
@@ -33,12 +34,13 @@ summary: '您可以使用 `tridentctl`安裝 Trident。此程序適用於 Triden
 ====
 
 
+[[install-trident-using-tridentctl]]
 == 使用以下方式安裝 Trident `tridentctl`
 
 檢查 link:kubernetes-deploy.html["安裝概述"] 以確保滿足安裝先決條件並為您的環境選擇了正確的安裝選項。
 
 .開始之前
-在開始安裝之前，請登入 Linux 主機並驗證它是否正在管理運作中的 link:requirements.html["支援的 Kubernetes 叢集"^]，以及您是否擁有必要的權限。
+在開始安裝之前，請登入 Linux 主機並驗證它是否正在管理運作中的 link:../trident-get-started/requirements.html["支援的 Kubernetes 叢集"]，以及您是否擁有必要的權限。
 
 
 NOTE: 使用 OpenShift 時，請在以下所有範例中使用 `oc`而非 `kubectl`，並先執行 `oc login -u system:admin`或 `oc login -u kube-admin`以 *system:admin* 身分登入。
@@ -69,6 +71,7 @@ kubectl run -i --tty ping --image=busybox --restart=Never --rm -- \
 ====
 
 
+[[step-1-download-the-trident-installer-package]]
 == 步驟 1：下載 Trident 安裝程式套件
 
 Trident 安裝程式套件會建立一個 Trident pod，配置用於維護其狀態的 CRD 對象，並初始化 CSI sidecar 以執行諸如配置磁碟區和將磁碟區附加到叢集主機等操作。從link:https://github.com/NetApp/trident/releases/latest["GitHub 上的_資產_部分"^]下載並解壓縮最新版本的 Trident 安裝程式。將範例中的 _<trident-installer-XX.XX.X.tar.gz>_ 更新為您選擇的 Trident 版本。
@@ -81,6 +84,7 @@ cd trident-installer
 ----
 
 
+[[step-2-install-trident]]
 == 步驟 2：安裝 Trident
 
 透過執行 `tridentctl install`指令，在所需的命名空間中安裝 Trident。您可以新增其他參數來指定映像登錄位置。
@@ -132,12 +136,14 @@ INFO Trident installation succeeded.
 ----
 
 
+[[verify-the-installation]]
 == 驗證安裝
 
 您可以使用 pod 建立狀態或 `tridentctl`來驗證您的安裝。
 
 
 
+[[using-pod-creation-status]]
 === 使用 pod 建立狀態
 
 您可以透過檢視已建立的 pod 的狀態來確認 Trident 安裝是否已完成：
@@ -155,6 +161,7 @@ NOTE: 如果安裝程式未成功完成或 `trident-controller-<generated id>` (
 
 
 
+[[using-tridentctl]]
 === 使用 `tridentctl`
 
 您可以使用 `tridentctl`檢查已安裝的 Trident 版本。
@@ -171,6 +178,7 @@ NOTE: 如果安裝程式未成功完成或 `trident-controller-<generated id>` (
 ----
 
 
+[[sample-configurations]]
 == 範例組態
 
 以下範例提供使用 `tridentctl`安裝 Trident 的範例組態。

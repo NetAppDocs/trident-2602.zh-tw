@@ -16,6 +16,7 @@ summary: Trident 支援為建立的磁碟區指派有意義的名稱和標籤，
 
 
 
+[[before-you-begin]]
 == 開始之前
 
 支援自訂磁碟區名稱和標籤：
@@ -27,6 +28,7 @@ summary: Trident 支援為建立的磁碟區指派有意義的名稱和標籤，
 
 
 
+[[limitations]]
 == 限制
 
 * 自訂磁碟區名稱僅與 ONTAP 內部部署驅動程式相容。
@@ -36,6 +38,7 @@ summary: Trident 支援為建立的磁碟區指派有意義的名稱和標籤，
 
 
 
+[[key-behaviors-of-customizable-volume-names]]
 == 可自訂磁碟區名稱的關鍵行為
 
 * 如果由於名稱範本中的語法無效而導致故障，則後端建立將失敗。但是，如果範本應用程式失敗，則磁碟區將根據現有的命名慣例命名。
@@ -44,6 +47,7 @@ summary: Trident 支援為建立的磁碟區指派有意義的名稱和標籤，
 
 
 
+[[backend-configuration-examples-with-name-template-and-labels]]
 == 後端組態範例、名稱範本和標籤
 
 可以在根層級和 / 或池層級定義自訂名稱範本。
@@ -104,6 +108,7 @@ summary: Trident 支援為建立的磁碟區指派有意義的名稱和標籤，
 ----
 
 
+[[name-template-examples]]
 == 名稱範本範例
 
 *範例 1*：
@@ -120,6 +125,7 @@ summary: Trident 支援為建立的磁碟區指派有意義的名稱和標籤，
 ----
 
 
+[[points-to-consider]]
 == 需要考慮的要點
 
 . 對於磁碟區匯入，僅當現有磁碟區的標籤採用特定格式時，才會更新標籤。例如： `{"provisioning":{"Cluster":"ClusterA", "PVC": "pvcname"}}`

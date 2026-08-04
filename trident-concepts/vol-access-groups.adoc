@@ -19,6 +19,7 @@ NOTE: 如果您使用的是 CHAP，請忽略此部分。建議使用 CHAP 以簡
 
 
 
+[[learn-about-volume-access-groups]]
 == 了解 Volume Access Group
 
 Trident 可以使用磁碟區存取群組來控制對其配置的磁碟區的存取。如果 CHAP 被停用，它會尋找名為 `trident`的存取群組，除非您在設定中指定一個或多個存取群組 ID。

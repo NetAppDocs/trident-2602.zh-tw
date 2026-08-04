@@ -18,6 +18,7 @@ summary: 您可以使用 protectctl 命令來建立 Trident Protect 自訂資源
 
 
 
+[[install-the-trident-protect-cli-plugin]]
 == 安裝 Trident Protect CLI 外掛程式
 
 在使用命令列實用程式之前，需要將其安裝到用於存取叢集的電腦上。請根據您的電腦使用的是 x64 還是 ARM CPU，依照以下步驟操作。
@@ -98,6 +99,7 @@ NOTE: 將外掛程式複製到 PATH 變數中的某個位置,即可透過鍵入 
 
 
 
+[[view-trident-cli-plugin-help]]
 == 查看 Trident CLI 外掛程式說明
 
 您可以使用內建的外掛程式說明功能，以取得外掛程式功能的詳細說明：
@@ -113,6 +115,7 @@ tridentctl-protect help
 
 
 
+[[enable-command-auto-completion]]
 == 啟用命令自動完成
 
 安裝 Trident Protect CLI 外掛程式後、您可以為某些命令啟用自動完成功能。

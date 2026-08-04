@@ -16,6 +16,7 @@ NetApp 產品組合中的每個儲存平台都具有獨特的功能，無論應�
 
 
 
+[[platform-overview]]
 == 平台概覽
 
 Trident 可與 ONTAP 和 Element 搭配使用。雖然沒有哪個平台比其他平台更適合所有應用程式和場景，但在選擇平台時，應考慮應用程式的需求以及管理設備的團隊的需求。
@@ -24,6 +25,7 @@ Trident 可與 ONTAP 和 Element 搭配使用。雖然沒有哪個平台比其�
 
 
 
+[[ontap-and-cloud-volumes-ontap-best-practices]]
 == ONTAP 和 Cloud Volumes ONTAP 最佳實務做法
 
 了解為 Trident 配置 ONTAP 和 Cloud Volumes ONTAP 的最佳實務做法。
@@ -32,6 +34,7 @@ Trident 可與 ONTAP 和 Element 搭配使用。雖然沒有哪個平台比其�
 
 
 
+[[use-svms-dedicated-to-trident]]
 === 使用專用於 Trident 的 SVM
 
 儲存虛擬機器（SVM）為 ONTAP 系統上的租用戶提供隔離和管理分離。將 SVM 專用於應用程式可實現權限委派，並支援應用限制資源消耗的最佳實務做法。
@@ -49,6 +52,7 @@ SVM 的管理有多種選擇：
 
 
 
+[[limit-the-maximum-volume-count]]
 === 限制磁碟區數量上限
 
 ONTAP 儲存系統存在最大磁碟區數限制，此限制因軟體版本和硬體平台而異。請參閱 https://hwu.netapp.com/["NetApp Hardware Universe"^]以了解您特定平台和 ONTAP 版本的確切限制。當磁碟區數達到上限時，不僅 Trident 的資源配置作業會失敗，所有儲存請求也會失敗。
@@ -72,6 +76,7 @@ vserver modify -vserver <svm_name> -max-volumes <num_of_volumes>
 
 
 
+[[clone-a-volume]]
 === 複製磁碟區
 
 NetApp Trident 在使用 `ontap-nas`、 `ontap-san`和 `solidfire-san`儲存驅動程式時支援複製磁碟區。使用 `ontap-nas-flexgroup`或 `ontap-nas-economy`驅動程式時，不支援複製。從現有磁碟區建立新磁碟區將建立新的快照。
@@ -81,6 +86,7 @@ WARNING: 避免克隆與不同 StorageClass 關聯的 PVC。在同一 StorageCla
 
 
 
+[[limit-the-maximum-size-of-volumes-created-by-trident]]
 === 限制 Trident 建立的磁碟區大小上限
 
 若要設定 Trident 可建立的磁碟區最大大小，請在您的 `limitVolumeSize` 定義中使用  `backend.json` 參數。
@@ -89,18 +95,21 @@ WARNING: 避免克隆與不同 StorageClass 關聯的 PVC。在同一 StorageCla
 
 
 
+[[limit-the-maximum-size-of-flexvols-created-by-trident]]
 === 限制 Trident 建立的 FlexVols 大小上限
 
 若要為作為 ontap-san-economy 和 ontap-nas-economy 驅動程式資源池所使用的 FlexVols 設定最大大小，請在您的 `limitVolumePoolSize` 定義中使用  `backend.json` 參數。
 
 
 
+[[configure-trident-to-use-bidirectional-chap]]
 === 設定 Trident 使用雙向 CHAP
 
 您可以在後端定義中指定 CHAP 發起方和目標的使用者名稱和密碼，並讓 Trident 在 SVM 上啟用 CHAP。透過後端設定中的  `useCHAP` 參數，Trident 可使用 CHAP 對 ONTAP 後端的 iSCSI 連線進行驗證。
 
 
 
+[[create-and-use-an-svm-qos-policy]]
 === 建立並使用 SVM QoS 原則
 
 透過對 SVM 應用 ONTAP QoS 原則，可限制 Trident 已配置磁碟區可使用的 IOPS 數量。這有助於 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-perf-mon/GUID-77DF9BAF-4ED7-43F6-AECE-95DFB0680D2F.html?cp=7_1_2_1_2["阻止霸凌行為"^]防止失控容器影響 Trident SVM 以外的工作負載。
@@ -131,6 +140,7 @@ IMPORTANT: 只有當您的 ONTAP 版本低於 9.8 時，才應將 QoS 原則群�
 
 
 
+[[create-qos-policy-groups-for-trident]]
 === 為 Trident 建立 QoS 原則群組
 
 服務品質（QoS）可確保關鍵工作負載的效能不會因競爭工作負載而降低。ONTAP QoS 策略群組為磁碟區提供 QoS 選項，並允許使用者為一個或多個工作負載定義吞吐量上限。有關 QoS 的更多資訊，請參閱 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-perf-mon/GUID-77DF9BAF-4ED7-43F6-AECE-95DFB0680D2F.html["透過 QoS 保證處理量"^]。您可以在後端或儲存池中指定 QoS 策略群組，這些策略群組將套用於在該儲存池或後端中建立的每個磁碟區。
@@ -172,6 +182,7 @@ storage:
 
 
 
+[[limit-storage-resource-access-to-kubernetes-cluster-members]]
 === 限制 Kubernetes 叢集成員的儲存資源存取
 
 限制對 Trident 所建立的 NFS 磁碟區、iSCSI LUN 和 FC LUN 的存取，是 Kubernetes 部署安全態勢的關鍵組成部分。這樣做可以防止非 Kubernetes 叢集成員的主機存取這些磁碟區，從而避免資料被意外修改。
@@ -188,6 +199,7 @@ storage:
 
 
 
+[[use-a-dedicated-export-policy]]
 === 使用專用的匯出原則
 
 您應確保每個後端都存在匯出策略，該策略僅允許存取 Kubernetes 叢集中的節點。Trident 可以自動建立和管理匯出策略。這樣，Trident 將對其配置的磁碟區的存取限制在 Kubernetes 叢集中的節點上，並簡化節點的新增/刪除操作。
@@ -202,6 +214,7 @@ storage:
 
 
 
+[[disable-showmount-for-the-application-svm]]
 === 停用應用程式 SVM 的 `showmount`
 
  `showmount` 功能可讓 NFS 用戶端向 SVM 查詢可用 NFS 匯出的清單。部署至 Kubernetes 叢集的 Pod 可以針對 SVM 發出  `showmount -e` 命令、並接收可用掛載的清單、包括其無權存取的掛載。雖然這本身並不構成安全性危害、但它確實提供了不必要的資訊、可能有助於未獲授權的使用者連線至 NFS 匯出。
@@ -214,18 +227,21 @@ vserver nfs modify -vserver <svm_name> -showmount disabled
 ----
 
 
+[[solidfire-best-practices]]
 == SolidFire 最佳實踐
 
 了解為 Trident 配置 SolidFire 儲存設備的最佳實務做法。
 
 
 
+[[create-solidfire-account]]
 === 建立 SolidFire 帳戶
 
 每個 SolidFire 帳戶代表一個唯一的磁碟區擁有者，並擁有自己的一組 Challenge-Handshake Authentication Protocol (CHAP) 憑證。您可以透過帳戶名稱和對應的 CHAP 憑證，或透過磁碟區存取群組來存取指派給某個帳戶的磁碟區。一個帳戶最多可以分配兩千個磁碟區，但一個磁碟區只能屬於一個帳戶。
 
 
 
+[[create-a-qos-policy]]
 === 建立 QoS 原則
 
 如果您想要建立並儲存可套用於多個磁碟區的標準化服務品質設定，請使用 SolidFire 服務品質（QoS）原則。
@@ -278,6 +294,7 @@ NOTE: 儘管 Max IOPS 和 Burst IOPS 可以設定為高達 200,000，但磁碟�
 
 
 
+[[solidfire-authentication]]
 === SolidFire 驗證
 
 Element 支援兩種驗證方法：CHAP 和磁碟區存取群組（VAG）。CHAP 使用 CHAP 協定對主機進行身份驗證，以連接到後端伺服器。磁碟區存取群組控制對其配置的磁碟區的存取。NetApp 建議使用 CHAP 進行身份驗證，因為它更簡單且沒有擴展限制。
@@ -291,6 +308,7 @@ CHAP 驗證（驗證啟動器是否為預期的磁碟區使用者）僅支援以
 
 
 
+[[where-to-find-more-information]]
 == 哪裡可以找到更多資訊？
 
 以下列出了一些最佳實踐文件。搜尋 https://www.netapp.com/search/["NetApp 資料庫"^]以取得最新版本。

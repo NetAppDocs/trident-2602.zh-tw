@@ -19,6 +19,7 @@ NOTE: 如需 Trident 協助，請使用 `tridentctl logs -a -n trident`建立支
 
 
 
+[[general-troubleshooting]]
 == 一般疑難排解
 
 * 如果 Trident Pod 無法正常啟動（例如，當 Trident Pod 卡在 `ContainerCreating`階段且就緒容器少於兩個時），執行 `kubectl -n trident describe deployment trident`和 `kubectl -n trident describe pod trident-********-****`可以提供更多資訊。取得 kubelet 日誌（例如，透過 `journalctl -xeu kubelet`）也很有幫助。
@@ -71,6 +72,7 @@ helm upgrade <name> trident-operator-21.07.1-custom.tgz --set tridentDebug=true`
 
 
 
+[[unsuccessful-trident-deployment-using-the-operator]]
 == 使用操作員部署 Trident 失敗
 
 如果您使用 Operator 部署 Trident，則 `TridentOrchestrator`的狀態會從 `Installing`變為 `Installed`。如果您觀察到 `Failed`狀態，且 Operator 無法自行恢復，則應執行以下命令檢查 Operator 的日誌：
@@ -138,6 +140,7 @@ trident-operator-766f7b8658-ldzsv   1/1     Running            0          8m17s
 
 
 
+[[unsuccessful-trident-deployment-using-tridentctl]]
 == 使用 Trident 部署失敗 `tridentctl`
 
 為了幫助您找出出錯的原因，您可以使用 ``-d`` 參數再次運行安裝程序，這將啟用調試模式，並幫助您了解問題所在：
@@ -160,6 +163,7 @@ INFO Trident uninstallation succeeded.
 ----
 
 
+[[completely-remove-trident-and-crds]]
 == 徹底移除 Trident 和 CRDs
 
 您可以完全移除 Trident 以及所有建立的 CRD 和相關的自訂資源。
@@ -199,12 +203,14 @@ tridentctl obliviate crd
 ====
 
 
+[[nvme-node-unstaging-failure-with-rwx-raw-block-namespaces-o-kubernetes-1-26]]
 == Kubernetes 1.26 版本中，使用 RWX 原始區塊命名空間時，NVMe 節點卸載失敗
 
 如果您執行的是 Kubernetes 1.26，在使用 NVMe/TCP 搭配 RWX 原始區塊命名空間時，節點取消暫存可能會失敗。下列案例提供失敗的因應措施。或者，您也可以將 Kubernetes 升級至 1.27。
 
 
 
+[[deleted-the-namespace-and-pod]]
 === 刪除了命名空間和 pod
 
 假設您有一個 Trident 管理的命名空間（NVMe 持久卷）附加到 pod。如果您直接從 ONTAP 後端刪除該命名空間，則在嘗試刪除 pod 後，卸載程序會卡住。這種情況不會影響 Kubernetes 叢集或其他功能。
@@ -214,6 +220,7 @@ tridentctl obliviate crd
 
 
 
+[[blocked-datalifs]]
 === 已封鎖的資料 LIF
 
  If you block (or bring down) all the dataLIFs of the NVMe Trident backend, the unstaging process gets stuck when you attempt to delete the pod. In this scenario, you cannot run any NVMe CLI commands on the Kubernetes node.
@@ -222,6 +229,7 @@ tridentctl obliviate crd
 
 
 
+[[deleted-namespace-mapping]]
 === 已刪除命名空間對應
 
  If you remove the `hostNQN` of the worker node from the corresponding subsystem, the unstaging process gets stuck when you attempt to delete the pod. In this scenario, you cannot run any NVMe CLI commands on the Kubernetes node.
@@ -230,6 +238,7 @@ tridentctl obliviate crd
 
 
 
+[[nfsv4-2-clients-report-invalid-argument-after-upgrading-ontap-when-when-expecting-v4-2-xattrs-being-enabled]]
 == 升級 ONTAP 後，NFSv4.2 用戶端在預期啟用「v4.2-xattrs」時回報「invalid argument」
 
 升級 ONTAP 後，NFSv4.2 用戶端在嘗試掛載 NFSv4.2 匯出時可能會報告「無效參數」錯誤。此問題發生於 SVM 上未啟用 `v4.2-xattrs`選項時。.因應措施：在 SVM 上啟用 `v4.2-xattrs`選項，或升級至 ONTAP 9.12.1 或更新版本，此選項在該版本中預設為啟用。

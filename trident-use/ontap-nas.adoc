@@ -16,6 +16,7 @@ summary: 了解如何使用 ONTAP NAS 驅動程式設定 ONTAP 後端。
 
 
 
+[[ontap-nas-driver-details]]
 == ONTAP NAS 驅動程式詳細資料
 
 Trident 提供以下 NAS 儲存驅動程式、用於與 ONTAP 叢集通訊。支援的存取模式包括：_ReadWriteOnce_ （RWO）、_ReadOnlyMany_ （ROX）、_ReadWriteMany_ （RWX）、_ReadWriteOncePod_ （RWOP）。
@@ -68,6 +69,7 @@ RWO 、 ROX 、 RWX 、 RWOP
 ====
 
 
+[[user-permissions]]
 == 使用者權限
 
 Trident 需要以 ONTAP 或 SVM 管理員身分執行，通常使用 `admin`叢集使用者或 `vsadmin`SVM 使用者，或使用具有相同角色但名稱不同的使用者。

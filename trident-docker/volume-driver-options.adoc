@@ -18,6 +18,7 @@ summary: 每個儲存驅動程式都有一組不同的選項，您可以在建�
 
 
 
+[[ontap-volume-options]]
 == ONTAP Volume 選項
 
 NFS 、 iSCSI 和 FC 的磁碟區建立選項包括以下幾種：
@@ -105,6 +106,7 @@ NFS 、 iSCSI 和 FC 的磁碟區建立選項包括以下幾種：
 |===
 
 
+[[examples]]
 === 範例
 
 請參閱以下範例：
@@ -161,6 +163,7 @@ docker volume create -d netapp --name my_vol --opt snapshotPolicy=myPolicy
 
 
 
+[[element-software-volume-options]]
 == Element 軟體 Volume 選項
 
 Element 軟體選項公開了與磁碟區關聯的大小和服務品質（QoS）策略。建立磁碟區時，會使用  `-o type=service_level` 命名規則指定與其關聯的 QoS 策略。
@@ -185,6 +188,7 @@ Element 軟體選項公開了與磁碟區關聯的大小和服務品質（QoS）
 |===
 
 
+[[example]]
 === 範例
 
 請參閱以下包含 QoS 定義的範例組態檔：

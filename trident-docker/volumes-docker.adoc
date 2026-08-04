@@ -16,6 +16,7 @@ summary: '若要建立磁碟區，請使用標準  `docker volume` 指令，並�
 
 
 
+[[create-a-volume]]
 == 建立磁碟區
 
 * 使用預設名稱的驅動程式建立磁碟區：
@@ -48,6 +49,7 @@ TIP: Volume 大小以字串形式表示，包含一個整數值，單位可選�
 
 
 
+[[remove-a-volume]]
 == 移除磁碟區
 
 * 刪除該磁碟區的方式與其他 Docker 磁碟區一樣：
@@ -66,6 +68,7 @@ IMPORTANT: 使用  `solidfire-san` 驅動程式時，上述範例會刪除並清
 
 
 
+[[clone-a-volume]]
 == 複製磁碟區
 
 使用 `ontap-nas`、 `ontap-san`和 `solidfire-san`儲存驅動程式時、Trident 可以複製磁碟區。使用 `ontap-nas-flexgroup`或 `ontap-nas-economy`驅動程式時，不支援複製。從現有磁碟區建立新磁碟區將建立新的快照。
@@ -92,6 +95,7 @@ docker volume create -d <driver_name> --name <new_name> -o from=<source_docker_v
 
 
 
+[[example]]
 === 範例
 
 [source, console]
@@ -128,6 +132,7 @@ docker volume rm volFromSnap
 ----
 
 
+[[access-externally-created-volumes]]
 == 存取外部建立的磁碟區
 
 容器可以使用 Trident 存取外部建立的區塊裝置（或其複製），*僅限於*這些裝置沒有分割區且其檔案系統受 Trident 支援的情況下（例如： `ext4`格式化的 `/dev/sdc1`將無法透過 Trident 存取）。

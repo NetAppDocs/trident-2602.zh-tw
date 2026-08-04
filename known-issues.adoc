@@ -18,6 +18,7 @@ summary: 以下是此版本的已知問題。
 
 
 
+[[volumesnapshots-not-reaching-readytouse-state]]
 == VolumeSnapshots 未達 ReadyToUse 狀態
 
 [WARNING]
@@ -33,6 +34,7 @@ summary: 以下是此版本的已知問題。
 
 
 
+[[restoring-restic-backups-of-large-files-can-fail]]
 == 還原大型檔案的 Restic 備份可能會失敗
 
 從使用 Restic 建立的 Amazon S3 備份中還原 30GB 或更大的檔案時,還原作業可能會失敗。作為因應措施,請使用 Kopia 作為資料移動工具來備份資料（Kopia 是備份的預設資料移動工具）。有關說明，請參閱 https://docs.netapp.com/us-en/trident/trident-protect/trident-protect-protect-apps.html["使用 Trident Protect 保護應用程式"^]。

@@ -16,6 +16,7 @@ summary: 了解在 Trident 中管理後端的不同方式。
 
 
 
+[[options-for-managing-backends]]
 == 管理後端的選項
 
 隨著 `TridentBackendConfig`的推出，管理員現在有兩種獨特的後端管理方式。這引發了以下問題：
@@ -26,6 +27,7 @@ summary: 了解在 Trident 中管理後端的不同方式。
 
 
 
+[[manage-tridentctl-backends-using-tridentbackendconfig]]
 == 使用 `tridentctl`後端管理 `TridentBackendConfig`
 
 本節說明如何通過 Kubernetes 介面直接建立 `tridentctl` 並建立 `TridentBackendConfig` 物件來管理後端的步驟。
@@ -50,6 +52,7 @@ summary: 了解在 Trident 中管理後端的不同方式。
 
 
 
+[[step-0-identify-the-backend]]
 === 步驟 0：識別後端
 
 若要建立 `TridentBackendConfig`綁定到現有後端，您需要取得後端配置。在本例中，我們假設後端是使用以下 JSON 定義建立的：
@@ -116,6 +119,7 @@ cat ontap-nas-backend.json
 ----
 
 
+[[step-1-create-a-kubernetes-secret]]
 === 步驟 1：建立 Kubernetes Secret
 
 建立一個包含後端憑證的 Secret ，如下例所示：
@@ -142,6 +146,7 @@ secret/backend-tbc-ontap-san-secret created
 ----
 
 
+[[step-2-create-a-tridentbackendconfig-cr]]
 === 步驟 2：建立  `TridentBackendConfig` CR
 
 下一步是建立  `TridentBackendConfig` CR，使其自動綁定到現有  `ontap-nas-backend`（如本例所示）。請確保滿足以下要求：
@@ -204,6 +209,7 @@ tridentbackendconfig.trident.netapp.io/tbc-ontap-nas-backend created
 ----
 
 
+[[step-3-verify-the-status-of-the-tridentbackendconfig-cr]]
 === 步驟 3：驗證 `TridentBackendConfig` CR 的狀態
 
 在 `TridentBackendConfig`建立之後，其階段必須為 `Bound`。它還應反映與現有後端相同的後端名稱和 UUID。
@@ -226,12 +232,14 @@ tridentctl get backend -n trident
 
 
 
+[[manage-tridentbackendconfig-backends-using-tridentctl]]
 == 使用 `TridentBackendConfig`後端管理 `tridentctl`
 
  `tridentctl` 可用於列出使用 `TridentBackendConfig` 建立的後端。此外，管理員也可以選擇透過 `tridentctl` 完全管理這些後端，方法是刪除 `TridentBackendConfig` 並確保 `spec.deletionPolicy` 設定為 `retain`。
 
 
 
+[[step-0-identify-the-backend]]
 === 步驟 0：識別後端
 
 例如，假設使用  `TridentBackendConfig` 建立了以下後端：
@@ -253,6 +261,7 @@ tridentctl get backend ontap-san-backend -n trident
 
 
 
+[[step-1-confirm-deletionpolicy-is-set-to-retain]]
 === 步驟 1 ：確認  `deletionPolicy` 已設定為  `retain`
 
 讓我們來看一下  `deletionPolicy` 的值。這需要設定為  `retain`。這可確保刪除  `TridentBackendConfig` CR 時，後端定義仍會存在，並可使用  `tridentctl` 進行管理。
@@ -277,6 +286,7 @@ NOTE: 除非 `deletionPolicy`設定為 `retain`，否則不要進行下一步。
 
 
 
+[[step-2-delete-the-tridentbackendconfig-cr]]
 === 步驟 2：刪除  `TridentBackendConfig` CR
 
 最後一步是刪除 `TridentBackendConfig` CR。確認 `deletionPolicy`設定為 `retain`後，即可執行刪除操作：

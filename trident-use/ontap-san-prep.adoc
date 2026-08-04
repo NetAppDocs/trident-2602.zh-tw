@@ -16,6 +16,7 @@ summary: 了解如何準備使用 ONTAP SAN 驅動程式配置 ONTAP 後端。
 
 
 
+[[requirements]]
 == 需求
 
 對於所有 ONTAP 後端、 Trident 要求至少將一個 Aggregate 指派給 SVM 。
@@ -29,6 +30,7 @@ NOTE: link:https://docs.netapp.com/us-en/asa-r2/get-started/learn-about.html["AS
 
 
 
+[[authenticate-the-ontap-backend]]
 == 驗證 ONTAP 後端
 
 Trident 提供兩種 ONTAP 後端驗證模式。
@@ -44,6 +46,7 @@ WARNING: 如果您嘗試同時提供憑證和憑證，則後端建立將會失�
 
 
 
+[[enable-credential-based-authentication]]
 === 啟用基於認證的驗證
 
 Trident 需要 SVM 範圍 / 叢集範圍的管理員憑證才能與 ONTAP 後端通訊。建議使用標準預先定義的角色，例如 `admin`或 `vsadmin`。這可確保與未來 ONTAP 版本向前相容,因為未來版本可能會公開供 Trident 版本使用的功能 API。雖然可以建立自訂安全登入角色並將其與 Trident 搭配使用,但不建議這樣做。
@@ -87,6 +90,7 @@ password: password
 
 
 
+[[enable-certificate-based-authentication]]
 === 啟用基於憑證的驗證
 
 新建和現有後端都可以使用憑證與 ONTAP 後端通訊。後端定義需要三個參數。
@@ -172,6 +176,7 @@ tridentctl create backend -f cert-backend.json -n trident
 
 
 
+[[update-authentication-methods-or-rotate-credentials]]
 === 更新驗證方法或輪換認證資料
 
 您可以更新現有後端以使用不同的身份驗證方法或輪換其憑證。此操作雙向有效：使用使用者名稱 / 密碼的後端可以更新為使用憑證；使用憑證的後端可以更新為基於使用者名稱 / 密碼的身份驗證。為此，您必須移除現有的身份驗證方法並新增新的身份驗證方法。然後使用包含所需參數的更新後的 backend.json 檔案來執行 `tridentctl backend update`。
@@ -205,6 +210,7 @@ NOTE: 輪換密碼時，儲存管理員必須先更新 ONTAP 上使用者的密�
 
 
 
+[[create-custom-ontap-role-for-trident]]
 === 為 Trident 建立自訂 ONTAP 角色
 
 您可以建立一個具有最低權限的 ONTAP 叢集角色，這樣您就不必使用 ONTAP 管理員角色在 Trident 中執行操作。當您在 Trident 後端組態中包含使用者名稱時，Trident 會使用您建立的 ONTAP 叢集角色來執行操作。
@@ -264,6 +270,7 @@ NOTE: 輪換密碼時，儲存管理員必須先更新 ONTAP 上使用者的密�
 
 
 
+[[authenticate-connections-with-bidirectional-chap]]
 == 使用雙向 CHAP 驗證連線
 
 Trident 可以使用雙向 CHAP 對 iSCSI 工作階段進行驗證，適用於 `ontap-san`和 `ontap-san-economy`驅動程式。這需要在後端定義中啟用 `useCHAP`選項。當設定為 `true`時，Trident 會將 SVM 的預設啟動器安全性設定為雙向 CHAP，並從後端檔案設定使用者名稱和密碼。NetApp 建議使用雙向 CHAP 來驗證連線。請參閱以下範例組態：
@@ -291,6 +298,7 @@ WARNING:  `useCHAP` 參數為布林值選項，只能配置一次。預設值為
 
 
 
+[[how-it-works]]
 === 運作方式
 
 將 `useCHAP`設為 true 後，儲存管理員會指示 Trident 在儲存後端設定 CHAP。這包括以下內容：
@@ -308,6 +316,7 @@ WARNING:  `useCHAP` 參數為布林值選項，只能配置一次。預設值為
 
 
 
+[[rotate-credentials-and-update-backends]]
 === 輪換認證資料並更新後端
 
 您可以透過更新  `backend.json` 檔案中的 CHAP 參數來更新 CHAP 憑證。這需要更新 CHAP 金鑰，並使用  `tridentctl update` 命令來反映這些變更。

@@ -17,6 +17,7 @@ NetApp Trident Protect 提供進階應用程式資料管理功能，可增強由
 
 
 
+[[whats-next]]
 == 接下來呢？
 
 您可以在安裝 Trident Protect 之前先了解其相關需求：

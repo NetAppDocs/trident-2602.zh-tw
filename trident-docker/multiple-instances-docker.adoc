@@ -16,6 +16,7 @@ summary: '當您需要同時使用多個儲存配置時，需要執行多個 Tri
 
 
 
+[[steps-for-docker-managed-plugin-version-1-1317-03-or-later]]
 == Docker 管理外掛程式（版本 1.13/17.03 或更新版本）的步驟
 
 . 啟動第一個執行個體，指定別名和組態檔。
@@ -51,6 +52,7 @@ docker volume create -d silver --name ntapSilver
 
 
 
+[[steps-for-traditional-version-1-12-or-earlier]]
 == 傳統方法的步驟（版本 1.12 或更早版本）
 
 . 使用自訂驅動程式 ID 透過 NFS 組態啟動外掛程式：

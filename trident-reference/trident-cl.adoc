@@ -16,6 +16,7 @@ Trident 為 Trident 協調器公開了多個命令列選項。您可以使用這
 
 
 
+[[logging]]
 == 日誌記錄
 
 `-debug`:: 啟用偵錯輸出。
@@ -24,6 +25,7 @@ Trident 為 Trident 協調器公開了多個命令列選項。您可以使用這
 
 
 
+[[kubernetes]]
 == Kubernetes
 
 `-k8s_pod`:: 使用此選項或 `-k8s_api_server`啟用 Kubernetes 支援。設定此選項會導致 Trident 使用其所在 Pod 的 Kubernetes 服務帳戶認證來聯絡 API 伺服器。此功能僅在 Trident 作為 Pod 在已啟用服務帳戶的 Kubernetes 叢集中執行時才有效。
@@ -32,6 +34,7 @@ Trident 為 Trident 協調器公開了多個命令列選項。您可以使用這
 
 
 
+[[docker]]
 == Docker
 
 `-volume_driver <name>`:: 註冊 Docker 外掛程式時使用的驅動程式名稱。預設為 `netapp`。
@@ -41,6 +44,7 @@ Trident 為 Trident 協調器公開了多個命令列選項。您可以使用這
 
 
 
+[[rest]]
 == REST
 
 `-address <ip-or-host>`:: 指定 Trident REST 伺服器監聽的位址。預設為 localhost。當監聽 localhost 且運作在 Kubernetes Pod 內時，REST 介面無法從 Pod 外部直接存取。使用 `-address ""`可使 REST 介面可透過 Pod IP 位址存取。

@@ -23,6 +23,7 @@ Trident 支援以 ONTAP 作為儲存後端的 Kerberos 加密：
 
 
 
+[[configure-in-flight-kerberos-encryption-with-on-premise-ontap-volumes]]
 == 使用內部部署 ONTAP 磁碟區設定傳輸中 Kerberos 加密
 
 您可以為託管叢集和本機 ONTAP 儲存後端之間的儲存流量啟用 Kerberos 加密。
@@ -40,6 +41,7 @@ NOTE: 對於使用本機 ONTAP 儲存後端的 NFS 流量，僅支援使用  `on
 
 
 
+[[add-or-modify-ontap-export-policies]]
 === 新增或修改 ONTAP 匯出原則
 
 您需要為現有的 ONTAP 匯出策略新增規則，或建立新的匯出策略，以支援對 ONTAP 儲存 VM 根磁碟區以及與上游 Kubernetes 叢集共用的任何 ONTAP 磁碟區進行 Kerberos 加密。您新增的匯出策略規則或建立的新匯出策略需要支援以下存取協定和存取權限：
@@ -77,6 +79,7 @@ NOTE: 對於使用本機 ONTAP 儲存後端的 NFS 流量，僅支援使用  `on
 
 
 
+[[create-a-storage-backend]]
 === 建立儲存後端
 
 您可以建立包含 Kerberos 加密功能的 Trident 儲存後端組態。
@@ -144,6 +147,7 @@ tridentctl logs
 
 
 
+[[create-a-storage-class]]
 === 建立儲存類別
 
 您可以建立儲存類別來配置具有 Kerberos 加密的磁碟區。
@@ -202,12 +206,14 @@ ontap-nas-sc    csi.trident.netapp.io   15h
 
 
 
+[[provision-volumes]]
 === 配置磁碟區
 
 建立儲存後端和儲存類別後，即可配置磁碟區。有關說明，請參閱  https://docs.netapp.com/us-en/trident/trident-use/vol-provision.html["配置磁碟區"^]。
 
 
 
+[[configure-in-flight-kerberos-encryption-with-azure-netapp-files-volumes]]
 == 使用 Azure NetApp Files 磁碟區設定傳輸中 Kerberos 加密
 
 您可以為託管叢集與單一 Azure NetApp Files 儲存後端或 Azure NetApp Files 儲存後端虛擬池之間的儲存流量啟用 Kerberos 加密。
@@ -221,6 +227,7 @@ ontap-nas-sc    csi.trident.netapp.io   15h
 
 
 
+[[create-a-storage-backend]]
 === 建立儲存後端
 
 您可以建立包含 Kerberos 加密功能的 Azure NetApp Files 儲存後端組態。
@@ -347,6 +354,7 @@ tridentctl logs
 
 
 
+[[create-a-storage-class]]
 === 建立儲存類別
 
 您可以建立儲存類別來配置具有 Kerberos 加密的磁碟區。
@@ -391,6 +399,7 @@ sc-nfs       csi.trident.netapp.io   15h
 
 
 
+[[provision-volumes]]
 === 配置磁碟區
 
 建立儲存後端和儲存類別後，即可配置磁碟區。有關說明，請參閱  https://docs.netapp.com/us-en/trident/trident-use/vol-provision.html["配置磁碟區"^]。

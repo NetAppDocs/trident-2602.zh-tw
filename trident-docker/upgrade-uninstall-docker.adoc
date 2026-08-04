@@ -16,6 +16,7 @@ summary: '您可以安全地升級 Trident for Docker，不會對正在使用的
 
 
 
+[[upgrade]]
 == 升級
 
 請依照下列步驟升級 Trident for Docker 。
@@ -77,6 +78,7 @@ IMPORTANT: 如果您是從舊版 Trident （ pre-20.10 ）升級到 Trident 20.1
 
 
 
+[[uninstall]]
 == 解除安裝
 
 請依照下列步驟解除安裝 Trident for Docker。

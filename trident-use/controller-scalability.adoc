@@ -16,10 +16,12 @@ Trident 透過提升多個儲存驅動程式之間的並發性，實現了控制
 
 
 
+[[key-concepts-and-definitions]]
 == 關鍵概念和定義
 
 
 
+[[controller-scalability]]
 === 控制器擴充性
 
 控制器可擴展性是指 Trident 控制器能夠並行處理多個儲存操作，而不是將它們串行化並置於單一鎖定之後。這些操作包括磁碟區的建立、刪除、調整大小、快照的建立和刪除、磁碟區的發布和取消發布以及後端管理。
@@ -28,12 +30,14 @@ Trident 透過提升多個儲存驅動程式之間的並發性，實現了控制
 
 
 
+[[controller-scalability-support]]
 == 控制器擴充性支援
 
 Trident 支援不同成熟度等級的控制器可擴充性，視儲存驅動程式而定。
 
 
 
+[[general-availability]]
 === 正式發行
 
 以下驅動程式在 Trident 26.02 正式版中支援控制器擴充性：
@@ -50,12 +54,14 @@ Trident 支援不同成熟度等級的控制器可擴充性，視儲存驅動程
 ====
 
 
+[[enable-controller-scalability]]
 == 啟用控制器擴充性
 
 控制器的可擴充性由  `enableConcurrency` 配置選項控制。必須在 Trident 安裝期間或透過更新現有部署明確啟用此選項。
 
 
 
+[[trident-operator-deployment]]
 === Trident 操作程式部署
 
 若要使用 Trident operator 啟用控制器可擴展性，請在 `TridentOrchestrator` 自訂資源中將 `enableConcurrency` 設定為 `true`。
@@ -100,6 +106,7 @@ kubectl get torc trident -o jsonpath='{.status.currentInstallationParams.enableC
 ----
 
 
+[[helm-deployment]]
 === Helm 部署
 
 若要使用 Helm 啟用控制器可擴充性，請將  `enableConcurrency` 值設為  `true`。
@@ -135,6 +142,7 @@ helm install trident netapp-trident/trident-operator --namespace trident --creat
 ----
 
 
+[[tridentctl-deployment]]
 === Tridentctl 部署
 
 若要啟用控制器可擴充性與 `tridentctl`，請在安裝期間傳遞 `--enable-concurrency`標誌。
@@ -160,6 +168,7 @@ tridentctl install -n trident --enable-concurrency
 ----
 
 
+[[verify-controller-scalability-is-enabled]]
 === 確認控制器可擴充性已啟用
 
 啟用控制器可擴充性後，請檢查控制器 pod 日誌，以驗證 Trident 控制器是否已啟用並發功能：
@@ -172,6 +181,7 @@ kubectl logs -n trident deploy/trident-controller | grep -i concurrency
 
 
 
+[[technical-preview]]
 === 技術預覽
 
 以下驅動程式在 Trident 26.02 中以技術預覽版的形式支援控制器擴充性：
@@ -189,6 +199,7 @@ kubectl logs -n trident deploy/trident-controller | grep -i concurrency
 
 
 
+[[concurrency-behavior]]
 == 並行行為
 
 啟用控制器可擴充性時：
@@ -202,6 +213,7 @@ kubectl logs -n trident deploy/trident-controller | grep -i concurrency
 
 
 
+[[known-limitations-and-considerations]]
 == 已知限制和注意事項
 
 以下考量事項適用於控制器擴充性：
@@ -220,6 +232,7 @@ kubectl logs -n trident deploy/trident-controller | grep -i concurrency
 
 
 
+[[caveats-and-limitations]]
 == 注意事項和限制
 
 Trident 26.02 有以下限制：
@@ -237,6 +250,7 @@ Trident 26.02 有以下限制：
 
 
 
+[[recommendations]]
 == 建議
 
 * 對於需要高可擴展性的正式作業環境，請使用通用版本 (GA) 驅動程式

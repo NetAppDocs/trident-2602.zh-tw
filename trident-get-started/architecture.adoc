@@ -16,6 +16,7 @@ Trident 以單一 Controller Pod 和叢集中每個工作節點上的 Node Pod �
 
 
 
+[[understanding-controller-pods-and-node-pods]]
 == 了解控制器 Pod 和節點 Pod
 
 Trident 在 Kubernetes 叢集上部署為單一 <<Trident Controller Pod>> 和一個或多個 <<Trident 節點 Pod>>，並使用標準 Kubernetes _CSI Sidecar Containers_ 來簡化 CSI 外掛程式的部署。link:https://kubernetes-csi.github.io/docs/sidecar-containers.html["Kubernetes CSI Sidecar 容器"^] 由 Kubernetes Storage 社群維護。
@@ -31,6 +32,7 @@ image::../media/trident-arch.png[Kubernetes 叢集上的 Trident 架構圖。]
 
 
 
+[[trident-controller-pod]]
 === Trident Controller Pod
 
 Trident Controller Pod 是一個運行 CSI Controller 插件的單一 Pod 。
@@ -45,6 +47,7 @@ image::../media/controller-pod.png[運行 CSI Controller 外掛程式及適用 C
 
 
 
+[[trident-node-pods]]
 === Trident 節點 Pod
 
 Trident Node Pod 是執行 CSI Node 外掛程式的特權 Pod。
@@ -59,6 +62,7 @@ image::../media/node-pod.png[執行 CSI Node 外掛程式及適用 CSI sidecar �
 
 
 
+[[supported-kubernetes-cluster-architectures]]
 == 支援的 Kubernetes 叢集架構
 
 Trident 支援下列 Kubernetes 架構：

@@ -16,6 +16,7 @@ summary: 您可以手動部署 Trident Operator 來安裝 Trident。此程序適
 
 
 
+[[critical-information-about-trident]]
 == 關於 Trident 的重要資訊
 
 *您必須閱讀以下關於 Trident 的重要資訊。*
@@ -36,12 +37,13 @@ summary: 您可以手動部署 Trident Operator 來安裝 Trident。此程序適
 ====
 
 
+[[manually-deploy-the-trident-operator-and-install-trident]]
 == 手動部署 Trident 操作員並安裝 Trident
 
 檢查 link:kubernetes-deploy.html["安裝概述"] 以確保滿足安裝先決條件並為您的環境選擇了正確的安裝選項。
 
 .開始之前
-登入 Linux 主機，並驗證它是否正在管理一個正常運作的 link:requirements.html["支援的 Kubernetes 叢集"^]，以及您是否擁有必要的權限。
+登入 Linux 主機，並驗證它是否正在管理一個正常運作的 link:../trident-get-started/requirements.html["支援的 Kubernetes 叢集"]，以及您是否擁有必要的權限。
 
 
 NOTE: 使用 OpenShift 時，請在以下所有範例中使用 `oc`而非 `kubectl`，並先執行 `oc login -u system:admin`或 `oc login -u kube-admin`以 *system:admin* 身分登入。
@@ -72,6 +74,7 @@ kubectl run -i --tty ping --image=busybox --restart=Never --rm -- \
 ====
 
 
+[[step-1-download-the-trident-installer-package]]
 === 步驟 1：下載 Trident 安裝程式套件
 
 Trident 安裝套件包含部署 Trident Operator 和安裝 Trident 所需的一切。從link:https://github.com/NetApp/trident/releases/latest["GitHub 上的_資產_部分"^]下載並解壓縮最新版本的 Trident 安裝程式。
@@ -84,6 +87,7 @@ cd trident-installer
 ----
 
 
+[[step-2-create-the-tridentorchestrator-crd]]
 === 步驟 2：建立  `TridentOrchestrator` CRD
 
 建立 `TridentOrchestrator` Custom Resource Definition (CRD)。稍後您將建立 `TridentOrchestrator` Custom Resources。請使用 `deploy/crds`中對應的 CRD YAML 版本建立 `TridentOrchestrator` CRD：
@@ -94,6 +98,7 @@ kubectl create -f deploy/crds/<VERSION>.yaml
 ----
 
 
+[[step-3-update-the-registry-location-in-the-operator]]
 === 步驟 3：更新 operator 中的登錄位置
 
 在 `/deploy/operator.yaml`中，更新 `image: docker.io/netapp/trident-operator:26.02.0`以反映您的映像登錄的位置。您的 link:../trident-get-started/requirements.html#container-images-and-corresponding-kubernetes-versions["Trident 與 CSI 影像"] 可以位於一個登錄中，也可以位於不同的登錄中，但所有 CSI 映像必須位於同一個登錄中。例如：
@@ -104,6 +109,7 @@ kubectl create -f deploy/crds/<VERSION>.yaml
 
 
 
+[[step-4-deploy-the-trident-operator]]
 === 步驟 4：部署 Trident 操作人員
 
 Trident 安裝程式提供了一個捆綁文件，可用來安裝 Operator 並建立關聯物件。該捆綁檔案提供了一種簡單的方法，可以使用預設配置部署 Operator 並安裝 Trident。
@@ -157,6 +163,7 @@ IMPORTANT: Kubernetes 叢集中只能存在 *一個* Operator 實例。請勿建
 
 
 
+[[step-5-update-the-image-registry-location-in-the-tridentorchestrator]]
 === 步驟 5：更新  `TridentOrchestrator` 中的映像登錄位置
 
 您的 link:../trident-get-started/requirements.html#container-images-and-corresponding-kubernetes-versions["Trident 與 CSI 影像"] 可以位於一個登錄中，也可以位於不同的登錄中，但所有 CSI 映像必須位於同一個登錄中。更新  `deploy/crds/tridentorchestrator_cr.yaml` 以根據您的登錄配置新增其他位置規格。
@@ -184,6 +191,7 @@ tridentImage: "<your-registry>/trident:26.02.0"
 ====
 
 
+[[step-6-create-the-tridentorchestrator-and-install-trident]]
 === 步驟 6：建立  `TridentOrchestrator` 並安裝 Trident
 
 現在您可以建立  `TridentOrchestrator` 並安裝 Trident。您也可以選擇進一步link:kubernetes-customize-deploy.html["自訂您的 Trident 安裝"]，方法是使用 `TridentOrchestrator`規格中的屬性。以下範例顯示 Trident 和 CSI 映像檔位於不同註冊中心的安裝情況。
@@ -236,12 +244,14 @@ Events:
 ----
 
 
+[[verify-the-installation]]
 == 驗證安裝
 
 有幾種方法可以驗證您的安裝。
 
 
 
+[[using-tridentorchestrator-status]]
 === 使用  `TridentOrchestrator` 狀態
 
  `TridentOrchestrator` 的狀態指示安裝是否成功，並顯示已安裝的 Trident 版本。安裝過程中， `TridentOrchestrator` 的狀態會從 `Installing` 變更為 `Installed`。如果您觀察到 `Failed` 狀態，且操作員無法自行恢復，link:../troubleshooting.html["檢查日誌"]。
@@ -274,6 +284,7 @@ Events:
 |===
 
 
+[[using-pod-creation-status]]
 === 使用 pod 建立狀態
 
 您可以透過檢視已建立的 pod 的狀態來確認 Trident 安裝是否已完成：
@@ -291,6 +302,7 @@ trident-operator-766f7b8658-ldzsv          1/1     Running   0           3m
 ----
 
 
+[[using-tridentctl]]
 === 使用 `tridentctl`
 
 您可以使用 `tridentctl`檢查已安裝的 Trident 版本。

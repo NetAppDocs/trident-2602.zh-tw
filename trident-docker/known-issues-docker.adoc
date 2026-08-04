@@ -16,6 +16,7 @@ summary: 尋找有關將 Trident 與 Docker 結合使用時已知問題的資訊
 
 
 
+[[upgrading-trident-docker-volume-plugin-to-20-10-and-later-from-older-versions-results-in-upgrade-failure-with-the-no-such-file-or-directory-error]]
 == 將 Trident Docker Volume Plugin 從舊版升級至 20.10 及更新版本會導致升級失敗，並出現 no such file or directory 錯誤。
 
 .因應措施
@@ -41,6 +42,7 @@ docker plugin install netapp/trident-plugin:20.10 --alias netapp --grant-all-per
 
 
 
+[[volume-names-must-be-a-minimum-of-2-characters-in-length]]
 == 磁碟區名稱長度至少為 2 個字元。
 
 
@@ -48,6 +50,7 @@ NOTE: 這是 Docker 用戶端的限制。用戶端會將單一字元的名稱解
 
 
 
+[[docker-swarm-has-certain-behaviors-that-prevent-trident-from-supporting-it-with-every-storage-and-driver-combination]]
 == Docker Swarm 的某些行為導致 Trident 無法支援它與所有儲存和驅動程式的組合。
 
 * Docker Swarm 目前使用磁碟區名稱而非磁碟區 ID 做為其唯一的磁碟區識別碼。
@@ -61,4 +64,5 @@ NetApp 已向 Docker 團隊提供回饋，但目前沒有任何跡象表明未�
 
 
 
+[[if-a-flexgroup-is-being-provisioned-ontap-does-not-provision-a-second-flexgroup-if-the-second-flexgroup-has-one-or-more-aggregates-in-common-with-the-flexgroup-being-provisioned]]
 == 如果正在配置 FlexGroup，而第二個 FlexGroup 與正在配置的 FlexGroup 有一個或多個共同的 Aggregate，則 ONTAP 不會配置第二個 FlexGroup。

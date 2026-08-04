@@ -16,6 +16,7 @@ Trident 運算子可讓您使用 `TridentOrchestrator` spec 中的屬性自訂 T
 
 
 
+[[understanding-controller-pods-and-node-pods]]
 == 了解控制器 Pod 和節點 Pod
 
 Trident 以單一控制器 Pod 和叢集中每個工作節點上的一個節點 Pod 的形式運作。節點 Pod 必須運行在您希望掛載 Trident 磁碟區的任何主機上。
@@ -28,6 +29,7 @@ Kubernetes link:https://kubernetes.io/docs/concepts/scheduling-eviction/assign-p
 
 
 
+[[configuration-options]]
 == 組態選項
 
 
@@ -263,6 +265,7 @@ NOTE: 有關格式化 pod 參數的更多資訊，請參閱 link:https://kuberne
 
 
 
+[[sample-configurations]]
 == 範例組態
 
 您可以在定義<<組態選項>>時使用 `TridentOrchestrator`中的屬性，以自訂您的安裝。

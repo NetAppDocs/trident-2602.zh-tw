@@ -16,6 +16,7 @@ summary: 了解如何使用 ONTAP SAN 驅動程式設定 ONTAP 後端。
 
 
 
+[[ontap-san-driver-details]]
 == ONTAP SAN 驅動程式詳細資料
 
 Trident 提供以下 SAN 儲存驅動程式、用於與 ONTAP 叢集通訊。支援的存取模式包括：_ReadWriteOnce_ （RWO）、_ReadOnlyMany_ （ROX）、_ReadWriteMany_ （RWX）、_ReadWriteOncePod_ （RWOP）。
@@ -111,6 +112,7 @@ ROX 和 RWX 在 Filesystem 磁碟區模式下不可用。
 ====
 
 
+[[user-permissions]]
 == 使用者權限
 
 Trident 需要以 ONTAP 或 SVM 管理員身分執行，通常使用 `admin`叢集使用者或 `vsadmin`SVM 使用者，或使用具有相同角色但名稱不同的使用者。對於 Amazon FSx for NetApp ONTAP 部署、Trident 需要以 ONTAP 或 SVM 管理員身分執行，使用叢集 `fsxadmin`使用者或 `vsadmin`SVM 使用者，或使用具有相同角色但名稱不同的使用者。 `fsxadmin`使用者是叢集管理使用者的有限替代方案。
@@ -122,6 +124,7 @@ NOTE: 如果使用 `limitAggregateUsage`參數，則需要叢集管理員權限�
 
 
 
+[[additional-considerations-for-nvmetcp]]
 == NVMe/TCP 的其他考量事項
 
 Trident 支援非揮發性記憶體高速介面（NVMe）協定，使用  `ontap-san` 驅動程式，包括：

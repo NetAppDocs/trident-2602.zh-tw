@@ -21,6 +21,7 @@ Trident 的多個執行個體可以在同一主機上同時執行。這允許同
 
 
 
+[[docker-managed-plugin-method-version-1-1317-03-and-later]]
 == Docker 管理的外掛程式方法（版本 1.13/17.03 及更新版本）
 
 .開始之前
@@ -121,6 +122,7 @@ docker volume rm firstVolume
 
 
 
+[[traditional-method-version-1-12-or-earlier]]
 == 傳統方法（1.12 版或更早版本）
 
 .開始之前
@@ -231,6 +233,7 @@ docker volume rm trident_2
 
 
 
+[[start-trident-at-system-startup]]
 == 在系統啟動時啟動 Trident
 
 systemd 型系統的範例單元檔案可在 Git 儲存庫的 `contrib/trident.service.example`中找到。若要在 RHEL 中使用該檔案，請執行下列操作：

@@ -163,7 +163,6 @@
   <block id="804e1070c55dcfc75cbde5cbcb86c3ba" category="section-title">在 Kubernetes 叢集上安裝和使用 Trident</block>
   <block id="df316d84e969d52af02710ec31df7055" category="section-title">Trident 是否支援從私人登錄進行離線安裝？</block>
   <block id="5e05991e14fd9934a724121da40f5b98" category="inline-link-macro">了解 Trident 安裝</block>
-  <block id="ca66faa23c0c32357c5e4b2873339a87" category="paragraph">是的，Trident 可以離線安裝。請參閱<block ref="103a023b8f190943182cff0959fb120d" category="inline-link-macro-rx"></block>。</block>
   <block id="75ac7954ef399713139c894c431e4116" category="section-title">我可以遠端安裝 Trident 嗎？</block>
   <block id="cab0813b2ef0c2dc3e0c17505f73a2f2" category="paragraph">是的。Trident 18.10 及更高版本支援從任何<block ref="0f12ee5c9f1dd90158580f1c292b0d37" prefix=" " category="inline-code"></block>有權存取叢集的機器進行遠端安裝。<block ref="0f12ee5c9f1dd90158580f1c292b0d37" prefix=" " category="inline-code"></block>驗證存取權限後（例如，<block ref="1513e62b9eb7bbfc46c1be1a91a2ab76" prefix=" " category="inline-code"></block>從遠端機器啟動命令進行驗證），請按照安裝說明進行操作。</block>
   <block id="50434308d8b9fc89f708232cb5e9cf87" category="section-title">我可以使用 Trident 設定高可用性嗎？</block>
@@ -172,9 +171,7 @@
   <block id="685a0ffaaa9ec81b2c31846cbf192282" category="paragraph">Trident 從 Kubernetes API Server 讀取訊息，以確定應用程式何時要求新的 PVC，因此它需要存取 kube-system。</block>
   <block id="0df447334013f5ccae9c82a00df9508a" category="section-title">Trident 使用哪些角色和權限？</block>
   <block id="3c70f31b6cfd2fccfef3e715c4c4cabb" category="inline-link-macro">自訂 tridentctl 安裝</block>
-  <block id="55d57dd588ee81f43cc12df69ee62e0b" category="paragraph">Trident 安裝程式會建立一個 Kubernetes ClusterRole，該實例擁有對 Kubernetes 叢集的 PersistentVolume、PersistentVolumeClaim、StorageClass 和 Secret 資源的特定存取權。請參閱<block ref="4d27cf5886ab6094891bd8a1e3bc926c" category="inline-link-macro-rx"></block>。</block>
   <block id="8b1b2eab4c453e6c69faf86b91b46898" category="section-title">我可以在本機產生 Trident 用於安裝的確切資訊清單檔案嗎？</block>
-  <block id="acadbe7a5cd9273b0ee5a279b032f7b0" category="paragraph">如有需要，您可以在本機產生和修改 Trident 安裝時使用的確切資訊清單檔案。請參閱<block ref="4d27cf5886ab6094891bd8a1e3bc926c" category="inline-link-macro-rx"></block>。</block>
   <block id="176cc68bd86878bb1bde4c3e72b4c315" category="section-title">我可以為兩個獨立的 Kubernetes 叢集中的兩個獨立的 Trident 執行個體共用同一個 ONTAP 後端 SVM 嗎？</block>
   <block id="14151311f8b442ecc7db1533868dccd9" category="paragraph">雖然不建議，但您可以為兩個 Trident 實例使用相同的後端 SVM。在安裝期間為每個實例指定唯一的磁碟區名稱，和／或在<block ref="641b2675465e765661450709e2351a8e" prefix=" " category="inline-code"></block>檔案中指定唯一的<block ref="57a3822fdb39e72cdc47d89fd04ce467" prefix=" " category="inline-code"></block>參數。這是為了確保同一個FlexVol volume 不會同時用於兩個實例。</block>
   <block id="55c5d3092c2cf2c38eb0a708eefb8486" category="section-title">是否可以在 ContainerLinux（以前稱為 CoreOS）下安裝 Trident？</block>
@@ -1324,7 +1321,6 @@
   <block id="c54f3e7a1c4cb645b1fc4f0f7a583ac6" category="paragraph">您可以手動部署 Trident Operator 來安裝 Trident。此程序適用於 Trident 所需的容器映像儲存在私人登錄中的安裝。如果您沒有私有映像登錄，請使用 <block ref="0d70fdec6fbaf15c3c460970c31207c9" category="inline-link-macro-rx"></block> 。</block>
   <block id="8ff1bc8a7ac69f081f871e9e2a8c0d0f" category="section-title">手動部署 Trident 操作員並安裝 Trident</block>
   <block id="ea8cda06a0e70ad34c1b9ab1b7135105" category="inline-link-macro">支援的 Kubernetes 叢集</block>
-  <block id="bcc71769dd00af93bb067088094d9b0b" category="paragraph">登入 Linux 主機，並驗證它是否正在管理一個正常運作的 <block ref="ac355729d1ddc95a290738ca862fed08" category="inline-link-macro-rx"></block>，以及您是否擁有必要的權限。</block>
   <block id="e420b75ec3bc014e3f69c43b2383768b" category="admonition">使用 OpenShift 時，請在以下所有範例中使用<block ref="fb024832e51eb5f6da9113a745f1eb59" prefix=" " category="inline-code"></block>而非<block ref="0f12ee5c9f1dd90158580f1c292b0d37" prefix=" " category="inline-code"></block>，並先執行<block ref="924132b4cedac6927feecff33e0a8e17" prefix=" " category="inline-code"></block>或<block ref="42c32f65d2d1c08a83fbc226da30a162" prefix=" " category="inline-code"></block>以 *system:admin* 身分登入。</block>
   <block id="92e83bca2bb40324de35154f8c95083d" category="list-text">驗證您的 Kubernetes 版本：</block>
   <block id="b17eef151a74252395aad7db4b148b57" category="list-text">驗證叢集管理員權限：</block>
@@ -1381,7 +1377,6 @@
   <block id="9be65bfc0904c8b8e06776335df88c52" category="summary">您可以手動部署 Trident Operator 來安裝 Trident。此程序適用於 Trident 所需的容器映像未儲存在私人登錄中的安裝。</block>
   <block id="5d8f25140dde9344f1318b1319929306" category="doc">手動部署 Trident 操作員（標準模式）</block>
   <block id="e09b85e9dd23a53724a460d162828e91" category="paragraph">您可以手動部署 Trident Operator 來安裝 Trident。此程序適用於 Trident 所需的容器映像未儲存在私人登錄中的安裝。如果您確實擁有私有映像登錄，請使用 <block ref="3fd9bb28718715a2d036f0ab9d9239b8" category="inline-link-macro-rx"></block>。</block>
-  <block id="953aeeea088f5f969f2eba121ae81f15" category="paragraph">在開始安裝之前，請登入 Linux 主機並驗證它是否正在管理運作中的 <block ref="ac355729d1ddc95a290738ca862fed08" category="inline-link-macro-rx"></block>，以及您是否擁有必要的權限。</block>
   <block id="ef2305a5dae85359e321280954448fc1" category="paragraph">建立<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> Custom Resource Definition (CRD)。稍後您將建立<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> Custom Resource。請使用<block ref="91ff3926f7c7983bb4a56689f631e6c9" prefix=" " category="inline-code"></block>中對應的 CRD YAML 版本來建立<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> CRD。</block>
   <block id="7e1c8354fb2b2ecb65abfa6a63e08970" category="section-title">步驟 3：部署 Trident 操作人員</block>
   <block id="c35c65e4cd4cef23559781ed63709eb0" category="section-title">步驟 4：建立 <block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 並安裝 Trident</block>
@@ -1411,7 +1406,6 @@
   <block id="16f386086a2ad7537b5e373f9c0c2d25" category="summary">您可以使用 Trident Operator（手動或使用 Helm）或透過<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>安裝 Trident。本主題提供了選擇適合您的安裝流程的重要資訊。</block>
   <block id="3673a00b7dc94dd4c41d2410acd2fd30" category="paragraph">為了確保 Trident 能夠安裝在各種不同的環境和組織中，NetApp 提供了多種安裝選項。您可以使用 Trident Operator（手動或使用 Helm）或透過<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>安裝 Trident。本主題提供了選擇適合您的安裝流程的重要資訊。</block>
   <block id="ef911ad0da9f5477ca7ec7af0ba4181a" category="paragraph">無論採用何種安裝路徑，您都必須具備：</block>
-  <block id="3f2851ece89063ca1615062ac2117a4e" category="list-text">對執行受支援 Kubernetes 版本且已啟用相關功能需求的受支援 Kubernetes 叢集擁有完整權限。詳情請查看 <block ref="3675fd04b78685cacd6e23511ab11d10" category="inline-link-macro-rx"></block>。</block>
   <block id="071d9becf308917b53d70c09e7da51b6" category="list-text">可存取受支援的 NetApp 儲存系統。</block>
   <block id="19eb712f406fc64109f96d9cf4055cb9" category="list-text">能夠從所有 Kubernetes 工作節點掛載磁碟區。</block>
   <block id="5f35b91e200cda68bf700d65b89c2c73" category="list-text">一台安裝了<block ref="0f12ee5c9f1dd90158580f1c292b0d37" prefix=" " category="inline-code"></block>（或<block ref="fb024832e51eb5f6da9113a745f1eb59" prefix=" " category="inline-code"></block>，如果您正在使用 OpenShift）並配置用於管理您要使用的 Kubernetes 叢集的 Linux 主機。</block>
@@ -1784,7 +1778,6 @@
   <block id="2a21586f7990f8cb0f8951cd2ef7bc3b" category="doc">使用 tridentctl 進行升級</block>
   <block id="ffdcc81ea1b556d1898b6edeef92af9c" category="paragraph">您可以使用<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>輕鬆升級現有的 Trident 安裝。</block>
   <block id="f01c58ea1eebde50a8ce26c58daf4cce" category="paragraph">解除安裝並重新安裝 Trident 相當於一次升級。卸載 Trident 時，Trident 部署使用的持久卷聲明（PVC）和持久卷（PV）不會被刪除。已配置的 PV 在 Trident 離線期間仍可用，Trident 將在恢復在線後為在此期間創建的任何 PVC 配置卷。</block>
-  <block id="ab639a35db468f671d4a76735e801015" category="paragraph">在使用<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>進行升級之前，請先檢查<block ref="5cffa5fbe758cc3901f0e33c78b29d1b" category="inline-link-macro-rx"></block>。</block>
   <block id="7ad65028965606bad1c173b4f16cefeb" category="list-text">在<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>中執行卸載指令，以移除與 Trident 相關的所有資源，但 CRD 和相關物件除外。</block>
   <block id="3777d5420fb2ef4c5e434cd5af97d73d" category="inline-link-macro">使用 tridentctl 安裝 Trident</block>
   <block id="a92191d3aca5303d4e3dde63b3f7fb5a" category="list-text">重新安裝 Trident 。請參閱<block ref="0a88f85b526e3c78d37b0fe4e95e5edc" category="inline-link-macro-rx"></block>。</block>
@@ -2792,7 +2785,6 @@
   <block id="1d17b5b3f5eac148844c892849fb56ee" category="list-text"><block ref="8c546380d19a34159a5f534f63ed1345" category="inline-link-macro-rx"></block>.</block>
   <block id="797abdcfd244820f24b3d4152205e999" category="list-text">如果叢集中尚未安裝 Operator Lifecycle Manager（OLM），請安裝它：<block ref="2517ba685c9750605ef002ea5ca0dd7c" prefix=" " category="inline-code"></block></block>
   <block id="c2517225f0cf11c14cfa8f15b56b4221" category="list-text">安裝 Node Health check Operator：<block ref="09b6bb475dc51286ca7e6eec20c4f77d" prefix=" " category="inline-code"></block>。</block>
-  <block id="0d554e4a64276c6bbaa2f252faef4d3a" category="admonition">您也可以使用以下<block ref="d3636ba06fda749510d82b74e497601f" category="inline-xref-macro-rx"></block>章節中指定的其他方法來偵測節點故障。</block>
   <block id="ebd17c61154ac668b32728307007008a" category="inline-link-macro">節點健康檢查 Operator</block>
   <block id="cc47bb57619fcdb7de5b495a2c701bf0" category="paragraph">如需詳細資訊，請參閱 <block ref="03167ed92cb924147e7b17a7c0b61981" category="inline-link-macro-rx"></block>。</block>
   <block id="2c4a935f02b64db18fe237d1902e292b" category="list-text">在 Trident 命名空間中建立一個 NodeHealthCheck (NHC) CR，用於監控叢集中的工作節點。範例：</block>
@@ -6030,7 +6022,6 @@
   <block id="962ef8b6f8710e2a8691044683805591" category="section-title">為 FSx for ONTAP 建立 Trident 後端組態（TBC）</block>
   <block id="2a673b8d42dbadfd3526e120fc0bc016" category="paragraph">有兩種方法可以設定 Trident 後端以使用 FSx for ONTAP 檔案系統：* 建立一個利用自動後端功能的 StorageClass。* 分別建立後端和 StorageClass。</block>
   <block id="f0177cdf4d35f6a71b4a28e75a4ac404" category="inline-link-macro">配置 StorageClass 和 PVC</block>
-  <block id="b160f94b047d691b98b2556cbb8a6765" category="paragraph">本節中的步驟涵蓋如何單獨建立後端。有關如何使用自動後端功能的資訊，請參閱<block ref="f9ef4344c4051a32be4e04cdc96a90e5" category="inline-link-macro-rx"></block>章節以取得更多資訊。</block>
   <block id="996d0bc5ff30cfbcef97caeaf2c6b353" category="paragraph">若要建立儲存後端，您需要建立 JSON 或 YAML 格式的組態檔。該檔案需要指定所需的儲存類型（NAS 或 SAN）、檔案系統、要從中取得資料的 SVM 以及如何進行驗證。以下範例展示如何定義基於 NAS 的儲存，以及如何使用 AWS Secret 來儲存要使用的 SVM 的憑證：</block>
   <block id="301909df91f724e7a48b15a1b5d05fa2" category="paragraph">執行下列命令以建立和驗證 Trident Backend Configuration（TBC）：</block>
   <block id="d072ff8aa34f8a629a86f50ed8e738e5" category="list-text">從 yaml 檔案建立 Trident 後端組態（TBC），並執行下列命令：</block>
@@ -6058,14 +6049,12 @@
   <block id="9a30deaecbfde403e36a8a700d09e3e1" category="cell">布林參數，用於使用 ONTAP REST API。當設定為<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block>時，Trident 將使用 ONTAP REST API 與後端通訊。此功能需要 ONTAP 9.11.1 或更新版本。此外，使用的 ONTAP 登入角色必須具有<block ref="a9ba4dc88fa11d44cc7c0c918d174778" prefix=" " category="inline-code"></block>應用程式的存取權限。預先定義的<block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block>和<block ref="fdb6ba311fad29ec53069808f10ebef4" prefix=" " category="inline-code"></block>角色可滿足此要求。</block>
   <block id="8ab25113bce4fe0aa1a0fe85708c8fde" category="section-title">配置 SMB Volume</block>
   <block id="9303b8f40cf82f5e37702c7a6387e725" category="inline-link-macro">ONTAP SAN 和 NAS 驅動程式整合</block>
-  <block id="74c8fe0ae57f8bdd9a6a73e05ee65a8b" category="paragraph">您可以使用 <block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 驅動程式來配置 SMB 磁碟區。在完成 <block ref="c0e593ebcf5aa364afa03985c32673ae" category="inline-link-macro-rx"></block> 之前，請先完成以下步驟：<block ref="5a96559e33c87b7cd646f9da5c804ffe" category="inline-link-macro-rx"></block></block>
   <block id="45785995a830d1fc258f9f492e7419f3" category="doc">設定儲存類別</block>
   <block id="1a9cbcbc6ddc2988ba989623616f551f" category="paragraph">此<block ref="da3f7f170e13df7f56e057fc4226aa85" category="inline-link-rx"></block>可識別資源配置程式，並指示資源配置程式如何配置磁碟區。本節說明如何設定 Kubernetes StorageClass 物件，以指定 Trident 作為資源配置程式。</block>
   <block id="181d66d2970ca0a79166620ff77f2365" category="section-title">建立 StorageClass 物件</block>
   <block id="210b23a19c97ecce400f85135dfa4f55" category="paragraph">當您為 FSx for ONTAP 建立 StorageClass 時，Trident 將自動建立後端組態。</block>
   <block id="509f5efbbc1d003a3134ba763ce9a153" category="admonition">如果您想要手動設定儲存後端，請參閱<block ref="f92675ea6cdcb434e9668b63d509b6c2" category="inline-xref-macro-rx"></block>章節，瞭解如何分別建立 Trident 後端和儲存類別。</block>
   <block id="9fdbc2bf1d74e1af2c19ff15c59205a5" category="paragraph">建立 StorageClass 時需要定義以下三個參數：</block>
-  <block id="ed3f08facccf88c0c8fb895fcb13ba18" category="paragraph">您可以透過 StorageClass 傳遞可選的後端參數。在 StorageClass<block ref="166e64f6c3677d0c513901242a3e702d" prefix=" " category="inline-code"></block> 部分中將所有可選值定義為字串。有關後端參數的完整列表、請參閱：<block ref="d01a283ecefcf0ec5ea4ea8e78d3518d" category="inline-link-macro-rx"></block>。</block>
   <block id="1ebccd08373f6e20b1548e7b97f25d9f" category="section-title">範例 StorageClass 設定檔。</block>
   <block id="e838148d72a21ebe7c26751f37c63e59" category="section-title">建立 StorageClass</block>
   <block id="3a0ab04525f748974131d078f6efe9a5" category="paragraph">建立設定檔案後，執行以下命令以建立儲存類別。</block>
@@ -6777,4 +6766,15 @@
   <block id="e8ce47501426b8525633fc30daf17d7a" category="sidebar">自訂磁碟區名稱</block>
   <block id="f18a50f02f48551895d57b81dd288142" category="sidebar">跨命名空間共享 NFS 磁碟區</block>
   <block id="62486fa65fc31c383ace8989549632ad" category="sidebar">使用快照</block>
+  <block id="73d390b7cfde2f277c2734067bafd367" category="paragraph">是的，Trident 可以離線安裝。請參閱 <block ref="cedf487696650d32e9d1b550107f5cf2" category="inline-link-macro-rx"></block>。</block>
+  <block id="a74f9ce84f40e6c12c5f01d0e30a3a02" category="paragraph">Trident 安裝程式會建立一個 Kubernetes ClusterRole，該實例擁有對 Kubernetes 叢集的 PersistentVolume、PersistentVolumeClaim、StorageClass 和 Secret 資源的特定存取權。請參閱 <block ref="899e78d7ae2db7ec2668011c11d502b3" category="inline-link-macro-rx"></block>。</block>
+  <block id="6f162f44e0f5ba12987785a3a744c8a9" category="paragraph">如有需要，您可以在本機產生和修改 Trident 安裝時使用的確切資訊清單檔案。請參閱 <block ref="899e78d7ae2db7ec2668011c11d502b3" category="inline-link-macro-rx"></block>。</block>
+  <block id="e9d36c266026dc04d43783120d0a2d1d" category="paragraph">登入 Linux 主機，並驗證它是否正在管理一個正常運作的 <block ref="958ebeab180637e89445160bac2d22e7" category="inline-link-macro-rx"></block>，以及您是否擁有必要的權限。</block>
+  <block id="6e0142dfd4a5236fbce5c22e4e30fc2b" category="paragraph">在開始安裝之前，請登入 Linux 主機並驗證它是否正在管理運作中的 <block ref="958ebeab180637e89445160bac2d22e7" category="inline-link-macro-rx"></block>，以及您是否擁有必要的權限。</block>
+  <block id="799c345f132bca7bd3f7831646af862a" category="list-text">對執行受支援 Kubernetes 版本且已啟用相關功能需求的受支援 Kubernetes 叢集擁有完整權限。詳情請查看 <block ref="6fc1811f5f9a8ae54793544600e2dff7" category="inline-link-macro-rx"></block>。</block>
+  <block id="7ba0dd834b932c7125765a293d38c4f6" category="paragraph">在使用<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>進行升級之前，請先檢查<block ref="ad3ae3ba576f54a9ed86202bbeedc293" category="inline-link-macro-rx"></block>。</block>
+  <block id="df5472f060348f47fd839d2adb3c81f0" category="admonition">您也可以使用以下<block ref="503f7a005264f11a4a9eaf3aa07b2061" category="inline-xref-macro-rx"></block>章節中指定的其他方法來偵測節點故障。</block>
+  <block id="6ee63754839ff0755dd7651b97c920dc" category="paragraph">本節中的步驟涵蓋如何單獨建立後端。有關如何使用自動後端功能的資訊，請參閱<block ref="ad7c01c7932e0256a4470c1af46b892d" category="inline-link-macro-rx"></block>章節以取得更多資訊。</block>
+  <block id="910636ac8baee34d9916eff38415d716" category="paragraph">您可以使用 <block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 驅動程式來配置 SMB 磁碟區。在完成 <block ref="b5aba1e0f36397ffbbd463ea77030b53" category="inline-link-macro-rx"></block> 之前，請先完成以下步驟：<block ref="543ecb8334f9fccbb514e5c7ef0f9169" category="inline-link-macro-rx"></block></block>
+  <block id="76a9efc74f2f235700efb6006902d6fb" category="paragraph">您可以透過 StorageClass 傳遞可選的後端參數。在 StorageClass<block ref="166e64f6c3677d0c513901242a3e702d" prefix=" " category="inline-code"></block> 部分中將所有可選值定義為字串。有關後端參數的完整列表、請參閱：<block ref="375e7b685a3f1dc91dddea8fedf618cd" category="inline-link-macro-rx"></block>。</block>
 </blocks>

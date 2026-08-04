@@ -18,6 +18,7 @@ summary: 您可以使用註解、命名空間設定和儲存選項來自訂 Trid
 
 
 
+[[namespace-annotations-and-labels-during-restore-and-failover-operations]]
 == 還原和容錯移轉作業期間的命名空間註釋和標籤
 
 在還原和容錯移轉作業期間，目的地命名空間中的標籤和註釋會與來源命名空間中的標籤和註釋相符。來源命名空間中存在但目的地命名空間中不存在的標籤或註釋會被新增，而任何已存在的標籤或註釋則會被覆寫以符合來源命名空間中的值。僅存在於目的地命名空間中的標籤或註釋則保持不變。
@@ -40,6 +41,7 @@ NOTE: 執行還原或容錯移轉作業時， `restoreSkipNamespaceAnnotations` 
 
 
 
+[[example]]
 === 範例
 
 以下範例展示了來源命名空間和目標命名空間，它們各自具有不同的註解和標籤。您可以查看操作前後目標命名空間的狀態，以及註解和標籤在目標命名空間中是如何組合或覆蓋的。
@@ -102,12 +104,14 @@ NOTE: 執行還原或容錯移轉作業時， `restoreSkipNamespaceAnnotations` 
 |===
 
 
+[[supported-fields]]
 == 支援的欄位
 
 本節說明可用於還原作業的其他欄位。
 
 
 
+[[storage-class-mapping]]
 === 儲存類別對應
 
 此 `spec.storageClassMapping`屬性定義了從來源應用程式中的儲存類別到目標叢集上新儲存類別的對應。在將應用程式遷移到具有不同儲存類別的叢集之間，或變更 BackupRestore 操作的儲存後端時，可以使用此屬性。
@@ -124,6 +128,7 @@ storageClassMapping:
 ----
 
 
+[[supported-annotations]]
 == 支援的註釋
 
 本節列出系統中用於配置各種行為的支援註解。如果使用者未明確設定註解，系統將使用預設值。

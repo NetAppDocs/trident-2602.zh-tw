@@ -16,12 +16,14 @@ summary: 了解使用 Trident 建立的 Trident 和磁碟區的保護和復原�
 
 
 
+[[trident-replication-and-recovery]]
 == Trident 複寫與還原
 
 您可以建立備份，以便在災難發生時還原 Trident。
 
 
 
+[[trident-replication]]
 === Trident 複寫
 
 Trident 使用 Kubernetes CRD 來儲存和管理自己的狀態，並使用 Kubernetes 叢集 etcd 來儲存其中繼資料。
@@ -37,6 +39,7 @@ NOTE: NetApp 建議您使用 SnapMirror 關係，將 FlexVol 所在的 SVM 保�
 
 
 
+[[trident-recovery]]
 === Trident 恢復
 
 使用 Kubernetes CRD 和 Kubernetes 叢集 etcd 快照、您可以還原 Trident。
@@ -50,6 +53,7 @@ NOTE: NetApp 建議您使用 SnapMirror 關係，將 FlexVol 所在的 SVM 保�
 
 
 
+[[svm-replication-and-recovery]]
 == SVM 複製與復原
 
 Trident 無法設定複寫關係、但儲存管理員可以使用 https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-svm-replication-concept.html["ONTAP SnapMirror"^]來複寫 SVM。
@@ -66,6 +70,7 @@ Trident 無法設定複寫關係、但儲存管理員可以使用 https://docs.n
 
 
 
+[[svm-replication]]
 === SVM 複製
 
 您可以使用 link:https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-svm-replication-workflow-concept.html["ONTAP：SnapMirror SVM 複製"^] 來建立 SVM 複寫關係。
@@ -79,6 +84,7 @@ SnapMirror 允許您設定選項來控制要複寫的內容。執行 <<使用 Tr
 
 
 
+[[svm-recovery-using-trident]]
 === 使用 Trident 進行 SVM 恢復
 
 Trident 不會自動偵測 SVM 故障。發生災難時、管理員可以手動啟動 Trident 容錯移轉至新的 SVM。
@@ -102,6 +108,7 @@ NOTE: 如果您指定了 `-identity-preserve true`，則當目標 SVM 啟動時�
 
 
 
+[[volume-replication-and-recovery]]
 == Volume 複寫與還原
 
 Trident 無法設定 SnapMirror 複製關係，但儲存管理員可以使用 link:https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-disaster-recovery-concept.html["ONTAP SnapMirror 複製和恢復"^] 來複製由 Trident 建立的磁碟區。
@@ -113,6 +120,7 @@ NOTE: 不支援在 `ontap-nas-economy`、 `ontap-san-economy`或 `ontap-flexgrou
 
 
 
+[[snapshot-data-protection]]
 == 快照資料保護
 
 您可以使用以下方法保護和還原資料：
