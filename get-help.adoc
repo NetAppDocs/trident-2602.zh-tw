@@ -76,11 +76,6 @@ link:https://docs.netapp.com/us-en/trident-2310/index.html["23.10"^]
  a| 
 link:https://docs.netapp.com/us-en/trident-2307/index.html["23.07"^]
 | -- | -- | 2026 年 7 月 
-
-
- a| 
-link:https://docs.netapp.com/us-en/trident-2304/index.html["23.04"^]
-| -- | -- | 2026 年 4 月 
 |===
 
 

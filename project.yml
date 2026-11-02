@@ -13,8 +13,10 @@ settings:
   versions:
   - version-number: '26.02'
     url: "/trident-2602"
-  - version-number: '26.06'
+  - version-number: '26.10'
     url: "/trident"
+  - version-number: '26.06'
+    url: "/trident-2606"
   - version-number: '25.10'
     url: "/trident-2510"
   - version-number: '25.06'
@@ -31,8 +33,6 @@ settings:
     url: "/trident-2310"
   - version-number: '23.07'
     url: "/trident-2307"
-  - version-number: '23.04'
-    url: "/trident-2304"
   langs: zh-tw,us-en,de-de,es-es,fr-fr,it-it,pt-br,ja-jp,ko-kr,zh-cn
 sidebar:
   entries:
